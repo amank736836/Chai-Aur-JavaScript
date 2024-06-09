@@ -48,3 +48,28 @@ console.log(typeof bigNumber); // bigint
 // link to study
 // https://262.ecma-international.org/11.0/#sec-11.4.3
 
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Stack (Primitive) , Heap (Non-Primitive)
+
+let myWebsite = "amank736836.com";
+let anotherWebsite = myWebsite;
+
+anotherWebsite = "amankarguwal.com";
+
+console.log(myWebsite); // "amank736836.com"
+console.log(anotherWebsite); // "amank736836.com"
+
+let userOne = {
+    email: "amankarguwal0@gmail.com",
+    upi:"amankarguwal@paytm"
+}
+
+let userTwo = userOne;
+
+console.log(userOne);
+userTwo.email = "aman1299.be21@chitkarauniversity.edu.in";
+
+console.log(userOne);
+console.log(userTwo);
+
