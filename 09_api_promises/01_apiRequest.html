@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>
+            0 - UNSENT - Client has been created. open() not called yet.
+        </li>
+        <li>
+            1 - OPENED - open() has been called.
+        </li>
+        <li>
+            2 - HEADERS_RECEIVED - send() has been called, and headers and status are available.
+        </li>
+        <li>
+            3 - LOADING - Downloading; responseText holds partial data.
+        </li>
+        <li>
+            4 - DONE - The operation is complete.
+        </li>
+    </ul>
+</body>
+<script>
+    const requestURL = 'https://api.github.com/users/amank736836';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', requestURL);
+    let data;
+    xhr.onreadystatechange = function() {
+        console.log(xhr.readyState);
+        if(xhr.readyState === 4) {
+            console.log(xhr.responseText);
+            data = JSON.parse(xhr.responseText);
+            console.log(typeof data);
+            console.log(data.followers);
+
+            const table = document.createElement('table');
+            table.setAttribute('border', '1');
+            table.innerHTML = `
+                <tr>
+                    <td>Name</td>
+                    <td>${data.name}</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>${data.location}</td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    <td><img src="${data.avatar_url}" alt="avatar" height="200px"></td>
+                </tr>
+                <tr>
+                    <td>Public Repos</td>
+                    <td>${data.public_repos}</td>
+                </tr>
+                <tr>
+                    <td>Blog</td>
+                    <td><a href="${data.blog}">${data.blog}</a></td>
+                </tr>
+            `;
+            document.body.appendChild(table);
+        }
+    }
+    
+    xhr.send();
+</script>
+</html>
